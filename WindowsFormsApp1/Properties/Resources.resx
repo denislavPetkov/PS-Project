@@ -118,34 +118,4 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Number_0_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Number_0_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Number_1_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Number_1_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Number_2_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Number_2_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Number_3_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Number_3_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Number_4_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Number_4_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Number_5_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Number_5_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Number_6_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Number_6_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Number_7_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Number_7_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Number_8_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Number_8_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Number_9_Icon_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Number_9_Icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
 </root>

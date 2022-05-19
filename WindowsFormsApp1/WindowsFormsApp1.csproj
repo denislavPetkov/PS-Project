@@ -120,6 +120,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="_InitApp.cs" />
     <Compile Include="_SecurityDescriptor.cs" />
     <EmbeddedResource Include="BaseForms\BaseForm.resx">
@@ -130,14 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -149,39 +149,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Image1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Number_0_Icon_32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Number_1_Icon_32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Number_2_Icon_32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Number_3_Icon_32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Number_4_Icon_32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Number_5_Icon_32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Number_6_Icon_32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Number_7_Icon_32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Number_8_Icon_32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Number_9_Icon_32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

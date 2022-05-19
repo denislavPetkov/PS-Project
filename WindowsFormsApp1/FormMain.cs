@@ -45,67 +45,30 @@ namespace WindowsFormsApp1
                 Image x = (Bitmap)((new ImageConverter()).ConvertFrom(option.Image));
                 imageList.Images.Add(x);
                 lvi = listViewMain.Items.Add(option.Name, nCnt);
-                lvi.Tag = new FormWrap(typeof(Form0), nCnt);
+                switch (option.Number)
+                {
+                    case 0:
+                        lvi.Tag = new FormWrap(typeof(Form0), nCnt);
+                        break;
+                    case 1:
+                        lvi.Tag = new FormWrap(typeof(Form1), nCnt);
+                        break;
+                    case 2:
+                        lvi.Tag = new FormWrap(typeof(Form2), nCnt);
+                        break;
+                    case 3:
+                        lvi.Tag = new FormWrap(typeof(Form3), nCnt);
+                        break;
+                    case 4:
+                        lvi.Tag = new FormWrap(typeof(Form4), nCnt);
+                        break;
+                    case 5:
+                        lvi.Tag = new FormWrap(typeof(Form5), nCnt);
+                        break;
+                }
+
                 nCnt++;
             }
-
-			//if (_InitApp.bForm0)
-			//{
-   //             Image x = (Bitmap)((new ImageConverter()).ConvertFrom(option2.Image));
-   //             imageList.Images.Add(x);
-			//	lvi = listViewMain.Items.Add(option2.Name, nCnt);
-			//	lvi.Tag = new FormWrap(typeof(Form0), _InitApp.IdxForm0);
-			//	nCnt++;
-			//}
-   //         if (_InitApp.bForm1)
-   //         {
-   //             imageList.Images.Add(WindowsFormsApp1.Properties.Resources.Number_1_Icon_32);
-   //             lvi = listViewMain.Items.Add("Form 1", nCnt);
-   //             lvi.Tag = new FormWrap(typeof(Form1), _InitApp.IdxForm1);
-   //             nCnt++;
-   //         }
-   //         if (_InitApp.bForm2)
-   //         {
-   //             imageList.Images.Add(WindowsFormsApp1.Properties.Resources.Number_2_Icon_32);
-   //             lvi = listViewMain.Items.Add("Form 2", nCnt);
-   //             lvi.Tag = new FormWrap(typeof(Form2), _InitApp.IdxForm2);
-   //             nCnt++;
-   //         }
-   //         if (_InitApp.bForm3)
-   //         {
-   //             imageList.Images.Add(WindowsFormsApp1.Properties.Resources.Number_3_Icon_32);
-   //             lvi = listViewMain.Items.Add("Form 3", nCnt);
-   //             lvi.Tag = new FormWrap(typeof(Form3), _InitApp.IdxForm3);
-   //             nCnt++;
-   //         }
-   //         if (_InitApp.bForm4)
-   //         {
-   //             imageList.Images.Add(WindowsFormsApp1.Properties.Resources.Number_4_Icon_32);
-   //             lvi = listViewMain.Items.Add("Form 4", nCnt);
-   //             lvi.Tag = new FormWrap(typeof(Form4), _InitApp.IdxForm4);
-   //             nCnt++;
-   //         }
-   //         if (_InitApp.bForm5)
-   //         {
-   //             imageList.Images.Add(WindowsFormsApp1.Properties.Resources.Number_5_Icon_32);
-   //             lvi = listViewMain.Items.Add("Form 5", nCnt);
-   //             lvi.Tag = new FormWrap(typeof(Form5), _InitApp.IdxForm5);
-   //             nCnt++;
-   //         }
-   //         if (_InitApp.bForm6)
-   //         {
-   //             imageList.Images.Add(WindowsFormsApp1.Properties.Resources.Number_6_Icon_32);
-   //             lvi = listViewMain.Items.Add("Form 6", nCnt);
-   //             lvi.Tag = new FormWrap(typeof(Form6), _InitApp.IdxForm6);
-   //             nCnt++;
-   //         }
-   //         if (_InitApp.bForm7)
-   //         {
-   //             imageList.Images.Add(WindowsFormsApp1.Properties.Resources.Number_7_Icon_32);
-   //             lvi = listViewMain.Items.Add("Form 7", nCnt);
-   //             lvi.Tag = new FormWrap(typeof(Form7), _InitApp.IdxForm7);
-   //             nCnt++;
-   //         }
 
             Text += " " + Assembly.GetExecutingAssembly().GetName().Version.ToString(); 
 		}
@@ -146,6 +109,7 @@ namespace WindowsFormsApp1
                     frm = (Form)Activator.CreateInstance(selectedItemType);
 
                 frm.Show(this);
+                frm.SetDesktopLocation(this.Location.X + this.Size.Width - 15, this.Location.Y);
             }
             catch (Exception E)
             {
