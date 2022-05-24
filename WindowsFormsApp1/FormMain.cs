@@ -15,14 +15,10 @@ namespace WindowsFormsApp1
         public class FormWrap
 		{
 			public Type m_frm = null;
-			public Int32 m_nIdx = 0;
 
-			public FormWrap(
-				Type frm,
-				Int32 nIdx)
+			public FormWrap(Type frm)
 			{
 				m_frm = frm;
-				m_nIdx = nIdx;
 			}
 
 
@@ -43,7 +39,7 @@ namespace WindowsFormsApp1
                 Image x = (Bitmap)((new ImageConverter()).ConvertFrom(option.Image));
                 imageList.Images.Add(x);
                 lvi = listViewMain.Items.Add(option.Name, nCnt);
-                lvi.Tag = new FormWrap(FormGetter.GetForm((int)option.Number), nCnt);
+                lvi.Tag = new FormWrap(FormGetter.GetForm((int)option.Number));
                 nCnt++;
             }
 
@@ -76,15 +72,10 @@ namespace WindowsFormsApp1
                 foreach (Form form in appOpenForms)
                         form.Close();
 
-                GC.Collect();
-                GC.Collect();
-
-                Form frm = (Form)Activator.CreateInstance(selectedItemType);
-
-
-                frm.Show(this);
-                frm.Size = new Size(Screen.FromControl(this).WorkingArea.Width - this.Width + extraWidth, this.Height);
-                frm.SetDesktopLocation(this.Location.X + this.Size.Width - extraWidth, this.Location.Y);
+                Form newForm = (Form)Activator.CreateInstance(selectedItemType);
+                newForm.Show(this);
+                newForm.Size = new Size(Screen.FromControl(this).WorkingArea.Width - this.Width + extraWidth, this.Height);
+                newForm.SetDesktopLocation(this.Location.X + this.Size.Width - extraWidth, this.Location.Y);
             }
             catch (Exception E)
             {
@@ -146,20 +137,22 @@ namespace WindowsFormsApp1
 
         }
 
-        // previous MainForm location
+        // previous FormMain location
         private Point m_PreviousLocation = new Point(int.MinValue, int.MinValue);
 
         private void FormMain_Move(object sender, EventArgs e)
         {
 
-            Form[] formsToAdjust =  this.OwnedForms;
+            if (this.OwnedForms.Length <= 0)
+                return;
+
+            Form formsToAdjust =  this.OwnedForms[0];
 
             // If the main form has been moved...
-            if (m_PreviousLocation.X != int.MinValue)
-                foreach (Form form in formsToAdjust) //... we move all child froms aw well
-                    form.Location = new Point(
-                      form.Location.X + Location.X - m_PreviousLocation.X,
-                      form.Location.Y + Location.Y - m_PreviousLocation.Y
+            if (m_PreviousLocation.X != int.MinValue) //... we move the child form as well
+                formsToAdjust.Location = new Point(
+                      formsToAdjust.Location.X + Location.X - m_PreviousLocation.X,
+                      formsToAdjust.Location.Y + Location.Y - m_PreviousLocation.Y
                     );
 
             m_PreviousLocation = Location;
