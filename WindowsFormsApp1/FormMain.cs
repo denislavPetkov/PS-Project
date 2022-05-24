@@ -146,13 +146,13 @@ namespace WindowsFormsApp1
             if (this.OwnedForms.Length <= 0)
                 return;
 
-            Form formsToAdjust =  this.OwnedForms[0];
+            Form formToAdjust =  this.OwnedForms[0];
 
             // If the main form has been moved...
             if (m_PreviousLocation.X != int.MinValue) //... we move the child form as well
-                formsToAdjust.Location = new Point(
-                      formsToAdjust.Location.X + Location.X - m_PreviousLocation.X,
-                      formsToAdjust.Location.Y + Location.Y - m_PreviousLocation.Y
+                formToAdjust.Location = new Point(
+                      formToAdjust.Location.X + Location.X - m_PreviousLocation.X,
+                      formToAdjust.Location.Y + Location.Y - m_PreviousLocation.Y
                     );
 
             m_PreviousLocation = Location;
@@ -160,13 +160,14 @@ namespace WindowsFormsApp1
 
         private void FormMain_SizeChanged(object sender, EventArgs e)
         {
-            Form[] formsToAdjust = this.OwnedForms;
+            if (this.OwnedForms.Length <= 0)
+                return;
 
-            foreach (Form form in formsToAdjust)
-            {
-                form.Size = new Size(form.Width, this.Height);
-                form.SetDesktopLocation(this.Location.X + this.Size.Width - extraWidth, this.Location.Y);
-            }
+            Form formToAdjust = this.OwnedForms[0];
+
+            formToAdjust.Size = new Size(formToAdjust.Width, this.Height);
+            formToAdjust.SetDesktopLocation(this.Location.X + this.Size.Width - extraWidth, this.Location.Y);
+
         }
     }
 }
