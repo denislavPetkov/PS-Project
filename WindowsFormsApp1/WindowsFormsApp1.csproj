@@ -62,6 +62,7 @@
     </Compile>
     <Compile Include="BaseForms\IContentData.cs" />
     <Compile Include="BaseForms\_ContentObjectEx.cs" />
+    <Compile Include="FormGetter.cs" />
     <Compile Include="Option.cs" />
     <Compile Include="OptionContext.cs" />
     <Compile Include="Form0.cs">

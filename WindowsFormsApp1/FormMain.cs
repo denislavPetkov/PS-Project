@@ -1,22 +1,19 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
-using System.IO;
-using System.Security.Cryptography;
-using System.Diagnostics;
-using System.Deployment.Application;
 using System.Reflection;
 using BaseForms;
+using System.Data.Entity;
 
 namespace WindowsFormsApp1
 {
 	public partial class FormMain : Form, IMessageFilter
     {
-		public class FormWrap
+        const int extraWidth = 20;
+
+
+        public class FormWrap
 		{
 			public Type m_frm = null;
 			public Int32 m_nIdx = 0;
@@ -32,41 +29,22 @@ namespace WindowsFormsApp1
 
 		}
 
-		public FormMain()
+		public FormMain(DbSet<Option> options)
 		{
 			InitializeComponent();
 
-			ListViewItem lvi;
+            this.Move += FormMain_Move;
+            this.SizeChanged += FormMain_SizeChanged;
+
+            ListViewItem lvi;
 			Int32 nCnt = 0;
 
-            bool f = new OptionContext().TestOptionsIfEmpty();
-            foreach (Option option in new OptionContext().Options)
+            foreach (Option option in options)
             {
                 Image x = (Bitmap)((new ImageConverter()).ConvertFrom(option.Image));
                 imageList.Images.Add(x);
                 lvi = listViewMain.Items.Add(option.Name, nCnt);
-                switch (option.Number)
-                {
-                    case 0:
-                        lvi.Tag = new FormWrap(typeof(Form0), nCnt);
-                        break;
-                    case 1:
-                        lvi.Tag = new FormWrap(typeof(Form1), nCnt);
-                        break;
-                    case 2:
-                        lvi.Tag = new FormWrap(typeof(Form2), nCnt);
-                        break;
-                    case 3:
-                        lvi.Tag = new FormWrap(typeof(Form3), nCnt);
-                        break;
-                    case 4:
-                        lvi.Tag = new FormWrap(typeof(Form4), nCnt);
-                        break;
-                    case 5:
-                        lvi.Tag = new FormWrap(typeof(Form5), nCnt);
-                        break;
-                }
-
+                lvi.Tag = new FormWrap(FormGetter.GetForm((int)option.Number), nCnt);
                 nCnt++;
             }
 
@@ -103,13 +81,16 @@ namespace WindowsFormsApp1
                 GC.Collect();
 
                 Form frm;
+                // check later
                 if (selectedItemType.IsSubclassOf(typeof(BaseForm)))
                     frm = (Form)Activator.CreateInstance(selectedItemType, args: FormHierarchy.Primary);
                 else
                     frm = (Form)Activator.CreateInstance(selectedItemType);
 
+
                 frm.Show(this);
-                frm.SetDesktopLocation(this.Location.X + this.Size.Width - 15, this.Location.Y);
+                frm.Size = new Size(Screen.FromControl(this).WorkingArea.Width - this.Width + extraWidth, this.Height);
+                frm.SetDesktopLocation(this.Location.X + this.Size.Width - extraWidth, this.Location.Y);
             }
             catch (Exception E)
             {
@@ -122,14 +103,15 @@ namespace WindowsFormsApp1
 
 		private void FormMain_Load(object sender, EventArgs e)
 		{
-			labelLogo.Text += " - " + DateTime.Now.Year.ToString();
+			labelLogo.Text += DateTime.Now.ToShortDateString();
 
 		    this.Location = Screen.FromControl(this).WorkingArea.Location;
             this.Location = new Point(
                 this.Location.X - SystemInformation.Border3DSize.Width - SystemInformation.BorderSize.Width,
                 this.Location.Y);
             this.Size = new Size(this.Width, Screen.FromControl(this).WorkingArea.Height);
-		}
+            this.MaximumSize = this.Size;
+        }
 
         private void listViewMain_MouseHover(object sender, EventArgs e)
         {
@@ -153,7 +135,7 @@ namespace WindowsFormsApp1
         {
             if (m.Msg == WM_MOUSEWHEEL)
             {
-                // find the control at screen position m.LParam
+                //// find the control at screen position m.LParam
                 Point pos = new Point(m.LParam.ToInt32());
                 IntPtr hWnd = WindowFromPoint(pos);
                 if (hWnd != IntPtr.Zero && hWnd != m.HWnd && Control.FromHandle(hWnd) != null)
@@ -168,6 +150,36 @@ namespace WindowsFormsApp1
         private void listViewMain_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        // previous MainForm location
+        private Point m_PreviousLocation = new Point(int.MinValue, int.MinValue);
+
+        private void FormMain_Move(object sender, EventArgs e)
+        {
+
+            Form[] formsToAdjust =  this.OwnedForms;
+
+            // If the main form has been moved...
+            if (m_PreviousLocation.X != int.MinValue)
+                foreach (Form form in formsToAdjust) //... we move all child froms aw well
+                    form.Location = new Point(
+                      form.Location.X + Location.X - m_PreviousLocation.X,
+                      form.Location.Y + Location.Y - m_PreviousLocation.Y
+                    );
+
+            m_PreviousLocation = Location;
+        }
+
+        private void FormMain_SizeChanged(object sender, EventArgs e)
+        {
+            Form[] formsToAdjust = this.OwnedForms;
+
+            foreach (Form form in formsToAdjust)
+            {
+                form.Size = new Size(form.Width, this.Height);
+                form.SetDesktopLocation(this.Location.X + this.Size.Width - extraWidth, this.Location.Y);
+            }
         }
     }
 }

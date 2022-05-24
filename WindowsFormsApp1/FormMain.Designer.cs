@@ -91,7 +91,6 @@ namespace WindowsFormsApp1
             this.labelLogo.Name = "labelLogo";
             this.labelLogo.Size = new System.Drawing.Size(133, 24);
             this.labelLogo.TabIndex = 2;
-            this.labelLogo.Text = "LOGO 2022";
             this.labelLogo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // panelB
