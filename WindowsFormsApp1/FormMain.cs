@@ -14,11 +14,11 @@ namespace WindowsFormsApp1
 
         public class FormWrap
 		{
-			public Type m_frm = null;
+            public Type FormType { get; } = null;
 
-			public FormWrap(Type frm)
+			public FormWrap(Type formType)
 			{
-				m_frm = frm;
+                FormType = formType;
 			}
 
 
@@ -57,7 +57,7 @@ namespace WindowsFormsApp1
 
                 //ErrorProvider.HideAll();
 
-                Type selectedItemType = ((FormWrap) listViewMain.SelectedItems[0].Tag).m_frm;
+                Type selectedItemType = ((FormWrap) listViewMain.SelectedItems[0].Tag).FormType;
 
                 List<Form> appOpenForms = new List<Form>(this.OwnedForms);
                 if (appOpenForms.Exists(x => x.GetType() == selectedItemType))
