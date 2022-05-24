@@ -9,8 +9,10 @@ namespace WindowsFormsApp1
 {
 	public partial class FormMain : Form, IMessageFilter
     {
-        const int extraWidth = 20;
+        // previous FormMain location
+        private Point previousLocation;
 
+        private const int extraWidth = 20;
 
         public class FormWrap
 		{
@@ -20,8 +22,6 @@ namespace WindowsFormsApp1
 			{
                 FormType = formType;
 			}
-
-
 		}
 
 		public FormMain(DbSet<Option> options)
@@ -31,14 +31,13 @@ namespace WindowsFormsApp1
             this.Move += FormMain_Move;
             this.SizeChanged += FormMain_SizeChanged;
 
-            ListViewItem lvi;
 			Int32 nCnt = 0;
 
             foreach (Option option in options)
             {
                 Image x = (Bitmap)((new ImageConverter()).ConvertFrom(option.Image));
                 imageList.Images.Add(x);
-                lvi = listViewMain.Items.Add(option.Name, nCnt);
+                ListViewItem lvi = listViewMain.Items.Add(option.Name, nCnt);
                 lvi.Tag = new FormWrap(FormGetter.GetForm((int)option.Number));
                 nCnt++;
             }
@@ -90,12 +89,13 @@ namespace WindowsFormsApp1
 		{
 			labelLogo.Text += DateTime.Now.ToShortDateString();
 
-		    this.Location = Screen.FromControl(this).WorkingArea.Location;
+            this.Location = Screen.FromControl(this).WorkingArea.Location;
             this.Location = new Point(
                 this.Location.X - SystemInformation.Border3DSize.Width - SystemInformation.BorderSize.Width,
                 this.Location.Y);
             this.Size = new Size(this.Width, Screen.FromControl(this).WorkingArea.Height);
             this.MaximumSize = this.Size;
+            previousLocation = this.Location;
         }
 
         private void listViewMain_MouseHover(object sender, EventArgs e)
@@ -137,25 +137,25 @@ namespace WindowsFormsApp1
 
         }
 
-        // previous FormMain location
-        private Point m_PreviousLocation = new Point(int.MinValue, int.MinValue);
-
         private void FormMain_Move(object sender, EventArgs e)
         {
 
             if (this.OwnedForms.Length <= 0)
+            {
+                previousLocation = Location;
                 return;
+            }
 
             Form formToAdjust =  this.OwnedForms[0];
 
             // If the main form has been moved...
-            if (m_PreviousLocation.X != int.MinValue) //... we move the child form as well
+            if (previousLocation.X != Location.X || previousLocation.Y != Location.Y) //... we move the child form as well
                 formToAdjust.Location = new Point(
-                      formToAdjust.Location.X + Location.X - m_PreviousLocation.X,
-                      formToAdjust.Location.Y + Location.Y - m_PreviousLocation.Y
+                      formToAdjust.Location.X + Location.X - previousLocation.X,
+                      formToAdjust.Location.Y + Location.Y - previousLocation.Y
                     );
 
-            m_PreviousLocation = Location;
+            previousLocation = Location;
         }
 
         private void FormMain_SizeChanged(object sender, EventArgs e)
@@ -167,7 +167,6 @@ namespace WindowsFormsApp1
 
             formToAdjust.Size = new Size(formToAdjust.Width, this.Height);
             formToAdjust.SetDesktopLocation(this.Location.X + this.Size.Width - extraWidth, this.Location.Y);
-
         }
     }
 }
