@@ -46,7 +46,7 @@ namespace WindowsFormsApp1
             // 
             // panelT
             // 
-            this.panelT.BackColor = System.Drawing.Color.White;
+            this.panelT.BackColor = System.Drawing.SystemColors.Info;
             this.panelT.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelT.Location = new System.Drawing.Point(0, 0);
             this.panelT.Name = "panelT";
@@ -55,6 +55,7 @@ namespace WindowsFormsApp1
             // 
             // listViewMain
             // 
+            this.listViewMain.BackColor = System.Drawing.SystemColors.Info;
             this.listViewMain.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listViewMain.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1});
