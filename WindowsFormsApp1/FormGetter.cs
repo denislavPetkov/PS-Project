@@ -9,12 +9,12 @@ namespace WindowsFormsApp1
     {
         private static Dictionary<int, Type> availableForms = new Dictionary<int, Type>()
         {
-            { 0,typeof(Form0) },
-            { 1,typeof(Form1) },
-            { 2,typeof(Form2) },
-            { 3,typeof(Form3) },
-            { 4,typeof(Form4) },
-            { 5,typeof(Form5) },
+            { 0,typeof(TestFrom) },
+            { 1,typeof(TestFrom) },
+            { 2,typeof(TestForm2) },
+            { 3,typeof(TestFrom) },
+            { 4,typeof(TestFrom) },
+            { 5,typeof(TestFrom) },
         };
 
         public static Type GetForm(int index)

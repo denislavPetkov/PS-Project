@@ -1,7 +1,6 @@
 C:\Users\denis\Desktop\ps\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe
 C:\Users\denis\Desktop\ps\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.pdb
 C:\Users\denis\Desktop\ps\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csprojAssemblyReference.cache
-C:\Users\denis\Desktop\ps\WindowsFormsApp1\obj\Debug\BaseForms.BaseForm.resources
 C:\Users\denis\Desktop\ps\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.FormMain.resources
 C:\Users\denis\Desktop\ps\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
 C:\Users\denis\Desktop\ps\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.GenerateResource.cache
@@ -14,3 +13,5 @@ C:\Users\denis\Desktop\ps\WindowsFormsApp1\bin\Debug\EntityFramework.SqlServer.d
 C:\Users\denis\Desktop\ps\WindowsFormsApp1\bin\Debug\EntityFramework.xml
 C:\Users\denis\Desktop\ps\WindowsFormsApp1\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\denis\Desktop\ps\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CopyComplete
+C:\Users\denis\Desktop\ps\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.TestFrom.resources
+C:\Users\denis\Desktop\ps\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.TestForm2.resources

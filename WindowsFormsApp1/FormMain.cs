@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Reflection;
-using BaseForms;
 using System.Data.Entity;
 
 namespace WindowsFormsApp1
@@ -80,12 +79,7 @@ namespace WindowsFormsApp1
                 GC.Collect();
                 GC.Collect();
 
-                Form frm;
-                // check later
-                if (selectedItemType.IsSubclassOf(typeof(BaseForm)))
-                    frm = (Form)Activator.CreateInstance(selectedItemType, args: FormHierarchy.Primary);
-                else
-                    frm = (Form)Activator.CreateInstance(selectedItemType);
+                Form frm = (Form)Activator.CreateInstance(selectedItemType);
 
 
                 frm.Show(this);
