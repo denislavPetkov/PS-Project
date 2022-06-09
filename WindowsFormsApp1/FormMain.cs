@@ -35,10 +35,16 @@ namespace WindowsFormsApp1
 
             foreach (Option option in options)
             {
+                Type formType = FormGetter.GetForm((int)option.Number);
+                if (formType == null)
+                {
+                    continue;
+                }
+
                 Image x = (Bitmap)((new ImageConverter()).ConvertFrom(option.Image));
                 imageList.Images.Add(x);
                 ListViewItem lvi = listViewMain.Items.Add(option.Name, nCnt);
-                lvi.Tag = new FormWrap(FormGetter.GetForm((int)option.Number));
+                lvi.Tag = new FormWrap(formType);
                 nCnt++;
             }
 
