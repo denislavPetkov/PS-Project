@@ -33,23 +33,19 @@ namespace WpfApp1
             this.SizeChanged += Window_SizeChanged;
             this.LocationChanged += Window_LocationChanged;
 
-            this.DataContext = new OptionsViewModel();
+            this.DataContext = new OptionsViewModel(new OptionContext());
         }
 
         private void OptionsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var viewmodel = (OptionsViewModel)this.DataContext;
             viewmodel.SelectedOption = optionsListView.SelectedItem as Option;
-            viewmodel.OpenWindow(this);
-
+            viewmodel.OpenWindow();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            this.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
-            var workingArea = System.Windows.SystemParameters.WorkArea;
-            this.Left = 0;
-            this.Top = workingArea.Bottom - this.Height;
+            SetInitialPos();
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -60,6 +56,13 @@ namespace WpfApp1
         private void Window_LocationChanged(object sender, EventArgs e)
         {
             RealodPos();
+        }
+
+        void SetInitialPos()
+        {
+            this.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
+            this.Left = 0;
+            this.Top = System.Windows.SystemParameters.WorkArea.Bottom - this.Height;
         }
 
         void RealodPos()

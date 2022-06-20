@@ -17,16 +17,13 @@ namespace WpfApp1
 
         public Option[] Options { get; set; }
 
-        public OptionsViewModel()
+        public OptionsViewModel(OptionContext db)
         {
-            using (var db = new OptionContext())
-            {
                 Options = db.Options.ToArray<Option>();
-            }
         }
 
 
-        public void OpenWindow(Window mainWindow)
+        public void OpenWindow()
         {
             Type windowType = WindowGetter.GetWindow((int)SelectedOption.Number);
 
@@ -34,6 +31,8 @@ namespace WpfApp1
             {
                 return;
             }
+
+            Window mainWindow = Application.Current.MainWindow;
 
             foreach (Window window in mainWindow.OwnedWindows)
             {
