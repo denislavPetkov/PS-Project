@@ -24,7 +24,7 @@ namespace WindowsFormsApp1
 			}
 		}
 
-		public FormMain(DbSet<Option> options)
+		public FormMain(List<Option> options)
 		{
 			InitializeComponent();
 

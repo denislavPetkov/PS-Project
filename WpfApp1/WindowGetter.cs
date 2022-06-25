@@ -14,7 +14,7 @@ namespace WpfApp1
             { 1,typeof(Window2) },
             { 2,typeof(Window1) },
             { 3,typeof(Window1) },
-            { 4,typeof(Window1) },
+            { 4,typeof(Window2) },
             { 5,typeof(Window1) },
         };
 

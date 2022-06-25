@@ -26,14 +26,15 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        
+        public MainWindow(List<Option> options)
         {
             InitializeComponent();
             this.Loaded += Window_Loaded;
             this.SizeChanged += Window_SizeChanged;
             this.LocationChanged += Window_LocationChanged;
 
-            this.DataContext = new OptionsViewModel(new OptionContext());
+            this.DataContext = new OptionsViewModel(options);
         }
 
         private void OptionsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -50,12 +51,12 @@ namespace WpfApp1
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            RealodPos();
+            ReloadPos();
         }
 
         private void Window_LocationChanged(object sender, EventArgs e)
         {
-            RealodPos();
+            ReloadPos();
         }
 
         void SetInitialPos()
@@ -65,7 +66,7 @@ namespace WpfApp1
             this.Top = System.Windows.SystemParameters.WorkArea.Bottom - this.Height;
         }
 
-        void RealodPos()
+        void ReloadPos()
         {
             if (this.OwnedWindows.Count == 0)
             {

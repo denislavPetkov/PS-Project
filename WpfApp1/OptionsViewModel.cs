@@ -15,11 +15,11 @@ namespace WpfApp1
     {
         public Option SelectedOption { get; set; }
 
-        public Option[] Options { get; set; }
+        public List<Option> Options { get; set; }
 
-        public OptionsViewModel(OptionContext db)
+        public OptionsViewModel(List<Option> options)
         {
-                Options = db.Options.ToArray<Option>();
+                Options = options;
         }
 
 
@@ -48,7 +48,6 @@ namespace WpfApp1
             Window newWindow = (Window)Activator.CreateInstance(windowType);
 
             newWindow.Owner = mainWindow;
-
 
             newWindow.Left = newWindow.Owner.Width + newWindow.Owner.Left - 20;
             newWindow.Width = System.Windows.SystemParameters.WorkArea.Right - newWindow.Owner.Width;
